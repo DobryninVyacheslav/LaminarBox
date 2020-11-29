@@ -120,9 +120,9 @@ history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,
 # _ = plt.plot([-100, 100], [-100, 100])
 # plt.show()
 
-data = {'glass': [0.0],
-        'air': [0.0],
-        'pressure': [250]}
+data = {'glass': [0],
+        'air': [1],
+        'pressure': [300.0]}
 test_df = pd.DataFrame(data)
 test_predictions = model.predict(norm(test_df)).flatten()
 print(test_df)
