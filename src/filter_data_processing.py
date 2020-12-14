@@ -5,6 +5,7 @@ import pandas as pd
 import seaborn as sns
 
 import tensorflow as tf
+import tensorflowjs as tfjs
 
 from tensorflow import keras
 from tensorflow.keras import layers
@@ -128,3 +129,6 @@ test_predictions = model.predict(norm(test_df)).flatten()
 print(test_df)
 print('===================')
 print(test_predictions)
+print('===================')
+
+tfjs.converters.save_keras_model(model,'/home/slava/Common/PycharmProjects/LaminarBox/target')
