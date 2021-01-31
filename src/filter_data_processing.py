@@ -125,12 +125,18 @@ data = {'glass': [0],
         'air': [1],
         'pressure': [300.0]}
 test_df = pd.DataFrame(data)
+print('===================')
+print(norm(test_df))
+print('===================')
 test_predictions = model.predict(norm(test_df)).flatten()
 print(test_df)
 print('===================')
 print(test_predictions)
 print('===================')
 print(test_dataset)
+print('===================')
+print(normed_test_data)
+print('===================')
 test_predictions = model.predict(normed_test_data).flatten()
 print(test_predictions)
 print('===================')
