@@ -21,7 +21,7 @@ dataset.isna().sum()
 dataset = dataset.dropna()
 
 print('==============================================')
-train_dataset = dataset
+train_dataset = dataset.sample(frac=1, random_state=0)
 print(train_dataset)
 print('==============================================')
 test_dataset = dataset.drop(dataset.sample(frac=0.8, random_state=0).index)
