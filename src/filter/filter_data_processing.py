@@ -10,7 +10,7 @@ import tensorflowjs as tfjs
 from tensorflow import keras
 from tensorflow.keras import layers
 
-dataset_path = "/home/slava/Common/PycharmProjects/LaminarBox/resources/filter_data.csv"
+dataset_path = "/resources/filter_data.csv"
 raw_dataset = pd.read_csv(dataset_path, na_values="?", comment='\t',
                           sep=",", skipinitialspace=True)
 dataset = raw_dataset.copy()

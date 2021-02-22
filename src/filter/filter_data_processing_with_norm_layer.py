@@ -13,7 +13,7 @@ from tensorflow.keras.layers.experimental import preprocessing
 # Make numpy printouts easier to read.
 np.set_printoptions(precision=3, suppress=True)
 
-dataset_path = "/home/slava/Common/PycharmProjects/LaminarBox/resources/filter_data.csv"
+dataset_path = "/resources/filter_data.csv"
 raw_dataset = pd.read_csv(dataset_path, na_values="?", comment='\t',
                           sep=",", skipinitialspace=True)
 dataset = raw_dataset.copy()
