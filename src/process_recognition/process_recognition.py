@@ -61,7 +61,7 @@ normalization_layer = layers.experimental.preprocessing.Rescaling(1. / 255)
 
 # Data augmentation
 
-data_augmentation = keras.Sequential(
+augmentation_and_rescale = keras.Sequential(
     [
         layers.experimental.preprocessing.RandomFlip("horizontal",
                                                      input_shape=(img_height,
@@ -69,6 +69,7 @@ data_augmentation = keras.Sequential(
                                                                   3)),
         layers.experimental.preprocessing.RandomRotation(0.1),
         layers.experimental.preprocessing.RandomZoom(0.1),
+        layers.experimental.preprocessing.Rescaling(1. / 255),
     ]
 )
 
@@ -76,8 +77,6 @@ data_augmentation = keras.Sequential(
 num_classes = 2
 
 model = Sequential([
-    data_augmentation,
-    layers.experimental.preprocessing.Rescaling(1. / 255),
     layers.Conv2D(16, 3, padding='same', activation='relu'),
     layers.MaxPooling2D(),
     layers.Conv2D(32, 3, padding='same', activation='relu'),
@@ -98,7 +97,7 @@ model.compile(optimizer='adam',
 # Train the model
 epochs = 40
 history = model.fit(
-    train_ds,
+    train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y)),
     validation_data=val_ds,
     epochs=epochs
 )
