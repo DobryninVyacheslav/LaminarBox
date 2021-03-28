@@ -8,6 +8,7 @@ import matplotlib.pyplot as plt
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
+import tensorflowjs as tfjs
 
 # Download and explore the dataset
 data_dir = pathlib.Path(
@@ -141,3 +142,4 @@ for images, _ in check_photo:
     plt.imshow(images[0].numpy().astype("uint8"))
 
 plt.show()
+tfjs.converters.save_keras_model(model, "./model")
