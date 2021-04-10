@@ -96,7 +96,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # Train the model
-epochs = 40
+epochs = 20
 history = model.fit(
     train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y)),
     validation_data=val_ds,
