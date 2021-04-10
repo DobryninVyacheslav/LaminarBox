@@ -9,7 +9,7 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 import tensorflowjs as tfjs
-import utils.tf_utils
+from utils import tf_utils
 
 # Download and explore the dataset
 data_dir = pathlib.Path(
@@ -103,7 +103,7 @@ history = model.fit(
     epochs=epochs
 )
 
-utils.tf_utils.show_training_results(history, epochs)
+tf_utils.show_training_results(history, epochs)
 # Predict on new data
 
 check_photo = val_ds.take(1)
