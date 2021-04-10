@@ -67,6 +67,9 @@ augmentation_and_rescale = keras.Sequential(
     ]
 )
 
+# tf_utils.show_images(train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y)),
+#                      with_numpy_as_type=False)
+
 # Create the model
 num_classes = 2
 
