@@ -42,14 +42,7 @@ class_names = train_ds.class_names
 print("Classes: ", class_names)
 
 # Visualize the data
-# plt.figure(figsize=(10, 10))
-# for images, labels in train_ds.take(1):
-#     for i in range(9):
-#         ax = plt.subplot(3, 3, i + 1)
-#         plt.imshow(images[i].numpy().astype("uint8"))
-#         plt.title(class_names[labels[i]])
-#         plt.axis("off")
-# plt.show()
+# tf_utils.show_images(train_ds, with_class_name=True)
 
 # Configure the dataset for performance
 AUTOTUNE = tf.data.AUTOTUNE

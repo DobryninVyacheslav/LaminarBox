@@ -10,12 +10,14 @@ def print_size(ds):
     print("Size: ", len(get_images(ds)))
 
 
-def show_images(ds, subplot_number=9, subplot_x_num=3, subplot_y_num=3):
+def show_images(ds, subplot_number=9, subplot_x_num=3, subplot_y_num=3, with_class_name=False):
     plt.figure(figsize=(10, 10))
     for images, labels in ds.take(1):
         for i in range(subplot_number):
             ax = plt.subplot(subplot_x_num, subplot_y_num, i + 1)
-            plt.imshow(images[i])
+            plt.imshow(images[i].numpy().astype("uint8"))
+            if with_class_name:
+                plt.title(ds.class_names[labels[i]])
             plt.axis("off")
     plt.show()
 
