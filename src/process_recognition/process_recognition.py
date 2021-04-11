@@ -1,14 +1,12 @@
-import numpy as np
-import os
-import PIL
-import tensorflow as tf
 import pathlib
-import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
+import numpy as np
+import tensorflow as tf
+import tensorflowjs as tfjs
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
-import tensorflowjs as tfjs
 from tensorflow.python.keras.layers.preprocessing.image_preprocessing import HORIZONTAL_AND_VERTICAL
 
 from utils import tf_utils
@@ -51,9 +49,6 @@ test_ds = tf.keras.preprocessing.image_dataset_from_directory(
 class_names = train_ds.class_names
 print("Classes: ", class_names)
 
-# Visualize the data
-# tf_utils.show_images(train_ds, with_class_name=True)
-
 # Configure the dataset for performance
 AUTOTUNE = tf.data.AUTOTUNE
 
@@ -75,6 +70,8 @@ augmentation_and_rescale = keras.Sequential(
 )
 
 aug_train_ds = train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y))
+
+# Visualize the data
 tf_utils.show_images(tf_utils.normalize_ds(train_ds), class_names=class_names)
 tf_utils.show_images(aug_train_ds, class_names=class_names)
 
