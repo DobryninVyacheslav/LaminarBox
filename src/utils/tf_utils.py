@@ -8,7 +8,7 @@ def get_images(ds, as_numpy_array=False, with_normalize=False):
         ds = normalize_ds(ds)
     img, labs = next(iter(ds))
     if as_numpy_array:
-        return img.numpy().astype("uint8")
+        return img.numpy()
     else:
         return img
 
