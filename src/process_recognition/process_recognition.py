@@ -9,6 +9,8 @@ from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 import tensorflowjs as tfjs
+from tensorflow.python.keras.layers.preprocessing.image_preprocessing import HORIZONTAL_AND_VERTICAL
+
 from utils import tf_utils
 
 # Download and explore the dataset
@@ -61,7 +63,7 @@ val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 # Data augmentation
 augmentation_and_rescale = keras.Sequential(
     [
-        layers.experimental.preprocessing.RandomFlip("horizontal",
+        layers.experimental.preprocessing.RandomFlip(HORIZONTAL_AND_VERTICAL,
                                                      input_shape=(img_height,
                                                                   img_width,
                                                                   3)),
@@ -98,7 +100,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # Train the model
-epochs = 10
+epochs = 15
 history = model.fit(
     aug_train_ds.concatenate(tf_utils.normalize_ds(train_ds)),
     validation_data=val_ds,
