@@ -66,8 +66,9 @@ augmentation_and_rescale = keras.Sequential(
 )
 
 aug_train_ds = train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y))
-tf_utils.show_images(tf_utils.normalize_ds(train_ds), subplot_number=25, subplot_x_num=5, subplot_y_num=5)
-tf_utils.show_images(aug_train_ds, subplot_number=25, subplot_x_num=5, subplot_y_num=5)
+tf_utils.show_images(tf_utils.normalize_ds(train_ds), subplot_number=25, subplot_x_num=5, subplot_y_num=5,
+                     class_names=class_names)
+tf_utils.show_images(aug_train_ds, subplot_number=25, subplot_x_num=5, subplot_y_num=5, class_names=class_names)
 
 # Create the model
 num_classes = 2
@@ -116,5 +117,7 @@ for images, _ in check_photo:
 
 plt.show()
 
+loss, acc = model.evaluate(val_ds)
+print("Accuracy: ", acc)
 # Save model to json format
 tfjs.converters.save_keras_model(model, "./model")
