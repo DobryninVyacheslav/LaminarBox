@@ -50,9 +50,6 @@ AUTOTUNE = tf.data.AUTOTUNE
 train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
 val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
-# Standardize the data
-normalization_layer = layers.experimental.preprocessing.Rescaling(1. / 255)
-
 # Data augmentation
 
 augmentation_and_rescale = keras.Sequential(
