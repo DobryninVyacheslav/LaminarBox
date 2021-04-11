@@ -19,7 +19,7 @@ test_data_dir = pathlib.Path(
 print("Total train and val photo number: ", len(list(train_and_val_data_dir.glob('*/*.jpg'))))
 print("Total test photo number: ", len(list(test_data_dir.glob('*/*.jpg'))))
 
-# Create a dataset
+# Create datasets
 batch_size = 32
 img_height = 180
 img_width = 180
@@ -59,7 +59,6 @@ train_ds = train_ds.cache().shuffle(1000).prefetch(buffer_size=AUTOTUNE)
 val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
 # Data augmentation
-
 augmentation_and_rescale = keras.Sequential(
     [
         layers.experimental.preprocessing.RandomFlip("horizontal",
@@ -74,9 +73,8 @@ augmentation_and_rescale = keras.Sequential(
 )
 
 aug_train_ds = train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y))
-tf_utils.show_images(tf_utils.normalize_ds(train_ds), subplot_number=25, subplot_x_num=5, subplot_y_num=5,
-                     class_names=class_names)
-tf_utils.show_images(aug_train_ds, subplot_number=25, subplot_x_num=5, subplot_y_num=5, class_names=class_names)
+tf_utils.show_images(tf_utils.normalize_ds(train_ds), class_names=class_names)
+tf_utils.show_images(aug_train_ds, class_names=class_names)
 
 # Create the model
 num_classes = 2
@@ -127,5 +125,6 @@ plt.show()
 
 loss, acc = model.evaluate(test_ds)
 print("Accuracy: ", acc)
+
 # Save model to json format
 tfjs.converters.save_keras_model(model, "./model")
