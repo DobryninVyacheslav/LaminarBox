@@ -18,7 +18,7 @@ def print_size(ds):
 
 
 def show_images(ds, subplot_number=9, subplot_x_num=3, subplot_y_num=3,
-                with_class_name=False, with_numpy_as_type=True, as_numpy_array=False):
+                with_class_name=False, is_normalize=True, as_numpy_array=False):
     plt.figure(figsize=(10, 10))
 
     if as_numpy_array:
@@ -30,10 +30,10 @@ def show_images(ds, subplot_number=9, subplot_x_num=3, subplot_y_num=3,
         for images, labels in ds.take(1):
             for i in range(subplot_number):
                 ax = plt.subplot(subplot_y_num, subplot_x_num, i + 1)
-                if with_numpy_as_type:
-                    plt.imshow(images[i].numpy().astype("uint8"))
-                else:
+                if is_normalize:
                     plt.imshow(images[i])
+                else:
+                    plt.imshow(images[i].numpy().astype("uint8"))
                 if with_class_name:
                     plt.title(ds.class_names[labels[i]])
                 plt.axis("off")
