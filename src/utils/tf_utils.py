@@ -85,3 +85,13 @@ def augment_data(data_dir, height=180, width=180, show_plt=False):
         plt.show()
 
     return data
+
+
+def get_first_tuple_from_ds(ds):
+    if len(ds) == 1:
+        return next(iter(ds))
+
+
+def concat_tensors(t1, t2, axis=0):
+    result = tf.concat([t1, t2], axis=axis)
+    return result
