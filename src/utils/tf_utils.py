@@ -1,9 +1,16 @@
 import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow.keras import layers
 
 
-def get_images(ds):
+def get_images(ds, as_numpy_array=False, with_normalize=False):
+    if with_normalize:
+        ds = normalize_ds(ds)
     img, labs = next(iter(ds))
-    return img
+    if as_numpy_array:
+        return img.numpy().astype("uint8")
+    else:
+        return img
 
 
 def print_size(ds):
@@ -48,3 +55,29 @@ def show_training_results(history, epochs):
     plt.legend(loc='upper right')
     plt.title('Training and Validation Loss')
     plt.show()
+
+
+def normalize_ds(ds):
+    normalization_layer = layers.experimental.preprocessing.Rescaling(1. / 255)
+    return ds.map(lambda x, y: (normalization_layer(x), y))
+
+
+def augment_data(data_dir, height=180, width=180, show_plt=False):
+    data_generator = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1. / 255,
+                                                                     shear_range=0.2,
+                                                                     zoom_range=0.2,
+                                                                     vertical_flip=True,
+                                                                     horizontal_flip=True)
+
+    data = data_generator.flow_from_directory(data_dir, target_size=(height, width))
+
+    if show_plt:
+        batch = data[0]
+        plt.figure(figsize=(10, 10))
+        for i in range(32):
+            ax = plt.subplot(4, 8, i + 1)
+            plt.imshow(batch[0][i])
+            plt.axis("off")
+        plt.show()
+
+    return data
