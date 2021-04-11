@@ -12,10 +12,12 @@ import tensorflowjs as tfjs
 from utils import tf_utils
 
 # Download and explore the dataset
-data_dir = pathlib.Path(
-    "/home/slava/Common/PycharmProjects/LaminarBox/resources/process recognition data/process_photo")
-image_count = len(list(data_dir.glob('*/*.jpg')))
-print("Total photo number: ", image_count)
+train_and_val_data_dir = pathlib.Path(
+    "/home/slava/Common/PycharmProjects/LaminarBox/resources/process recognition data/process_photo/train_and_val")
+test_data_dir = pathlib.Path(
+    "/home/slava/Common/PycharmProjects/LaminarBox/resources/process recognition data/process_photo/test")
+print("Total train and val photo number: ", len(list(train_and_val_data_dir.glob('*/*.jpg'))))
+print("Total test photo number: ", len(list(test_data_dir.glob('*/*.jpg'))))
 
 # Create a dataset
 batch_size = 32
@@ -23,7 +25,7 @@ img_height = 180
 img_width = 180
 
 train_ds = tf.keras.preprocessing.image_dataset_from_directory(
-    data_dir,
+    train_and_val_data_dir,
     validation_split=0.2,
     subset="training",
     seed=123,
@@ -31,9 +33,15 @@ train_ds = tf.keras.preprocessing.image_dataset_from_directory(
     batch_size=batch_size)
 
 val_ds = tf.keras.preprocessing.image_dataset_from_directory(
-    data_dir,
+    train_and_val_data_dir,
     validation_split=0.2,
     subset="validation",
+    seed=123,
+    image_size=(img_height, img_width),
+    batch_size=batch_size)
+
+test_ds = tf.keras.preprocessing.image_dataset_from_directory(
+    test_data_dir,
     seed=123,
     image_size=(img_height, img_width),
     batch_size=batch_size)
@@ -92,7 +100,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # Train the model
-epochs = 15
+epochs = 20
 history = model.fit(
     aug_train_ds.concatenate(tf_utils.normalize_ds(train_ds)),
     validation_data=val_ds,
@@ -117,7 +125,7 @@ for images, _ in check_photo:
 
 plt.show()
 
-loss, acc = model.evaluate(val_ds)
+loss, acc = model.evaluate(test_ds)
 print("Accuracy: ", acc)
 # Save model to json format
 tfjs.converters.save_keras_model(model, "./model")
