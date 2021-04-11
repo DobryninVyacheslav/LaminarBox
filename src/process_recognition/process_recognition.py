@@ -100,7 +100,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # Train the model
-epochs = 20
+epochs = 10
 history = model.fit(
     aug_train_ds.concatenate(tf_utils.normalize_ds(train_ds)),
     validation_data=val_ds,
