@@ -64,8 +64,7 @@ augmentation_and_rescale = keras.Sequential(
     ]
 )
 
-# tf_utils.show_images(train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y)),
-#                      with_numpy_as_type=False)
+result_train_ds = train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y))
 
 # Create the model
 num_classes = 2
@@ -91,14 +90,14 @@ model.compile(optimizer='adam',
 # Train the model
 epochs = 20
 history = model.fit(
-    train_ds.map(lambda x, y: (augmentation_and_rescale(x, training=True), y)),
+    result_train_ds,
     validation_data=val_ds,
     epochs=epochs
 )
 
 tf_utils.show_training_results(history, epochs)
-# Predict on new data
 
+# Predict on new data
 check_photo = val_ds.take(1)
 predictions = model.predict(check_photo)
 score = tf.nn.softmax(predictions[0])
@@ -113,4 +112,6 @@ for images, _ in check_photo:
     plt.imshow(images[0].numpy().astype("uint8"))
 
 plt.show()
+
+# Save model to json format
 tfjs.converters.save_keras_model(model, "./model")
