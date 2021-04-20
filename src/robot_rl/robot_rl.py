@@ -7,6 +7,7 @@ import tqdm
 
 from matplotlib import pyplot as plt
 from tensorflow.keras import layers
+from tensorflow.keras.models import Sequential
 from typing import Any, List, Sequence, Tuple
 
 # Create the environment
@@ -32,9 +33,9 @@ class ActorCritic(tf.keras.Model):
         """Initialize."""
         super().__init__()
 
-        self.common = layers.Dense(num_hidden_units, activation="relu")
-        self.actor = layers.Dense(num_actions)
-        self.critic = layers.Dense(1)
+        self.common = Sequential([layers.Dense(num_hidden_units, activation="relu")])
+        self.actor = Sequential([layers.Dense(num_actions)])
+        self.critic = Sequential([layers.Dense(1)])
 
     def call(self, inputs: tf.Tensor) -> Tuple[tf.Tensor, tf.Tensor]:
         x = self.common(inputs)
@@ -194,7 +195,7 @@ def train_step(
 
 
 min_episodes_criterion = 100
-max_episodes = 10000
+max_episodes = 500
 max_steps_per_episode = 500
 
 # Cartpole-v0 is considered solved if average reward is >= 195 over 100
