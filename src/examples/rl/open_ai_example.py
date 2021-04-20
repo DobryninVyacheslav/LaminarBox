@@ -1,4 +1,9 @@
+import time
+import gym
+
+# env = gym.make('Acrobot-v1')
 env = gym.make('CartPole-v0')
+
 for i_episode in range(20):
     observation = env.reset()
     for t in range(100):
@@ -11,3 +16,9 @@ for i_episode in range(20):
             print("Episode finished after {} timesteps".format(t+1))
             break
 env.close()
+
+# for i in range(env.action_space.n):
+#     print(env.action_space.sample())
+# print(env.observation_space)
+# print(env.observation_space.high)
+# print(env.observation_space.low)
