@@ -255,10 +255,9 @@ def render_episode(env: gym.Env, model: tf.keras.Model, max_steps: int):
         state, _, done, _ = env.step(action)
         state = tf.constant(state, dtype=tf.float32)
 
-        # Render screen every 10 steps
-        if i % 10 == 0:
-            screen = env.render(mode='rgb_array')
-            images.append(Image.fromarray(screen))
+        # Render screen every step
+        screen = env.render(mode='rgb_array')
+        images.append(Image.fromarray(screen))
 
         if done:
             break
