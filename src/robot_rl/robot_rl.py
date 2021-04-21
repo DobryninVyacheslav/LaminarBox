@@ -33,9 +33,12 @@ class ActorCritic(tf.keras.Model):
         """Initialize."""
         super().__init__()
 
-        self.common = Sequential([layers.Dense(num_hidden_units, activation="relu")])
-        self.actor = Sequential([layers.Dense(num_actions)])
-        self.critic = Sequential([layers.Dense(1)])
+        self.common = Sequential([
+            layers.Dense(num_hidden_units, activation="relu")
+            # layers.Dense(64, activation="relu")
+        ])
+        self.actor = layers.Dense(num_actions)
+        self.critic = layers.Dense(1)
 
     def call(self, inputs: tf.Tensor) -> Tuple[tf.Tensor, tf.Tensor]:
         x = self.common(inputs)
