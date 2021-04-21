@@ -198,7 +198,7 @@ min_episodes_criterion = 100
 max_episodes = 500
 max_steps_per_episode = 500
 
-# Cartpole-v0 is considered solved if average reward is >= 195 over 100
+# Acrobot-v1 is considered solved if average reward is >= -100 over 100
 # consecutive trials
 reward_threshold = -100
 running_reward = 0
