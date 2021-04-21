@@ -2,6 +2,7 @@ import time
 import gym
 
 # env = gym.make('Acrobot-v1')
+# env = gym.make('FetchReach-v1')
 env = gym.make('CartPole-v0')
 
 for i_episode in range(20):
