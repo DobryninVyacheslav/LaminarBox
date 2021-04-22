@@ -2,7 +2,6 @@ import pathlib
 
 import matplotlib.pyplot as plt
 import pandas as pd
-import seaborn as sns
 
 import tensorflow as tf
 import tensorflowjs as tfjs
@@ -10,7 +9,7 @@ import tensorflowjs as tfjs
 from tensorflow import keras
 from tensorflow.keras import layers
 
-dataset_path = "/resources/filter_data.csv"
+dataset_path = "/home/slava/Common/PycharmProjects/LaminarBox/resources/filter_data.csv"
 raw_dataset = pd.read_csv(dataset_path, na_values="?", comment='\t',
                           sep=",", skipinitialspace=True)
 dataset = raw_dataset.copy()
@@ -141,4 +140,4 @@ test_predictions = model.predict(normed_test_data).flatten()
 print(test_predictions)
 print('===================')
 
-tfjs.converters.save_keras_model(model,'/home/slava/Common/PycharmProjects/LaminarBox/target')
+tfjs.converters.save_keras_model(model,"./model")
