@@ -47,6 +47,7 @@ test_ds = tf.keras.preprocessing.image_dataset_from_directory(
     batch_size=batch_size)
 
 class_names = train_ds.class_names
+num_classes = len(train_ds.class_names)
 print("Classes: ", class_names)
 
 # Configure the dataset for performance
@@ -76,8 +77,6 @@ tf_utils.show_images(tf_utils.normalize_ds(train_ds), class_names=class_names)
 tf_utils.show_images(aug_train_ds, class_names=class_names)
 
 # Create the model
-num_classes = 2
-
 model = Sequential([
     layers.Conv2D(16, 3, padding='same', activation='relu'),
     layers.MaxPooling2D(),
