@@ -107,7 +107,7 @@ history = model.fit(
 tf_utils.show_training_results(history, epochs)
 
 # Predict on new data
-check_photo = val_ds.take(1)
+check_photo = test_ds.take(1)
 predictions = model.predict(check_photo)
 score = tf.nn.softmax(predictions[0])
 
