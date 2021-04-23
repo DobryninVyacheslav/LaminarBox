@@ -98,20 +98,13 @@ data = {'glass': [0],
         'air': [1],
         'pressure': [300.0]}
 test_df = pd.DataFrame(data)
-print('===================')
-print(norm(test_df))
-print('===================')
+pretty_print(norm(test_df), "Norm values (glass: 0, air: 1, pressure: 300)", line_length=50)
 test_predictions = model.predict(norm(test_df)).flatten()
-print(test_df)
-print('===================')
-print(test_predictions)
-print('===================')
-print(test_dataset)
-print('===================')
-print(normed_test_data)
-print('===================')
+pretty_print(test_predictions, "Predict result (glass: 0, air: 1, pressure: 300)", line_length=50)
+
+pretty_print(test_features, "Test features")
+pretty_print(normed_test_data, "Normalized test features")
 test_predictions = model.predict(normed_test_data).flatten()
-print(test_predictions)
-print('===================')
+pretty_print(test_predictions, "Predict result (test features)", line_length=50)
 
 tfjs.converters.save_keras_model(model, "src/main/resources/static/model/filter")
