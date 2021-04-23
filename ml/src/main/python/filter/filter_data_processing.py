@@ -1,21 +1,21 @@
-import pathlib
-
 import matplotlib.pyplot as plt
 import pandas as pd
-
 import tensorflow as tf
 import tensorflowjs as tfjs
-
 from tensorflow import keras
 from tensorflow.keras import layers
 
+# Load data
 dataset_path = "ml/src/resources/filter_data.csv"
 raw_dataset = pd.read_csv(dataset_path, na_values="?", comment='\t',
                           sep=",", skipinitialspace=True)
 dataset = raw_dataset.copy()
-print(dataset.tail())
-print('=====================')
+print("=====================\nPart of data: ", dataset.tail(), "\n=====================")
+
+# Delete missing values
 dataset = dataset.dropna()
+
+# Split the data into train and test
 train_dataset = dataset.sample(frac=1, random_state=0)
 test_dataset = dataset.drop(dataset.sample(frac=0.8, random_state=0).index)
 train_stats = train_dataset.describe()
@@ -99,7 +99,7 @@ early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,
                     validation_split=0.2, verbose=0, callbacks=[early_stop, PrintDot()])
 
-# plot_history(history)
+plot_history(history)
 #
 # loss, mae, mse = model.evaluate(normed_train_data, train_labels, verbose=2)
 #
