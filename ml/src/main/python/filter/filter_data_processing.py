@@ -40,6 +40,7 @@ normed_train_data = norm(train_dataset)
 normed_test_data = norm(test_dataset)
 
 
+# Build model
 def build_model():
     dnn_model = keras.Sequential([
         layers.Dense(64, activation='relu', input_shape=[len(train_dataset.keys())]),
@@ -56,22 +57,17 @@ def build_model():
 model = build_model()
 model.summary()
 
-example_batch = normed_train_data[:10]
-example_result = model.predict(example_batch)
-pretty_print(example_result, "Predict before fit")
-
-
 # Выведем прогресс обучения в виде точек после каждой завершенной эпохи
+EPOCHS = 1000
+early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
+
+
 class PrintDot(keras.callbacks.Callback):
     def on_epoch_end(self, epoch, logs):
         if epoch % 100 == 0:
             print('')
         print('.', end='')
 
-
-EPOCHS = 1000
-
-early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 
 history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,
                     validation_split=0.2, verbose=0, callbacks=[early_stop, PrintDot()])
