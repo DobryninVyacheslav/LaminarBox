@@ -9,7 +9,7 @@ from tensorflow.keras import layers
 from tensorflow.keras.datasets import mnist
 
 data_dir = pathlib.Path(
-    "/home/slava/Common/PycharmProjects/LaminarBox/resources/process recognition data/process_photo")
+    "/home/slava/Common/PycharmProjects/LaminarBox/resources/process_recognition_data/process_photo")
 
 batch_size = 32
 img_height = 180
