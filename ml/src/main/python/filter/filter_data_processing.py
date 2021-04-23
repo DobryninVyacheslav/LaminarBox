@@ -7,18 +7,18 @@ from tensorflow.keras import layers
 from ml.src.main.python.utils.tf_utils import pretty_print
 
 # Load data
-dataset_path = "ml/src/resources/filter_data/train_and_val_filter_data.csv"
-raw_dataset = pd.read_csv(dataset_path, na_values="?", comment='\t',
-                          sep=",", skipinitialspace=True)
-dataset = raw_dataset.copy()
-pretty_print(dataset.tail(), "Part of init data:")
+train_and_val_ds_path = "ml/src/resources/filter_data/train_and_val_filter_data.csv"
+train_and_val_raw_ds = pd.read_csv(train_and_val_ds_path, na_values="?", comment='\t',
+                                   sep=",", skipinitialspace=True)
+train_and_val_ds = train_and_val_raw_ds.copy()
+pretty_print(train_and_val_ds.tail(), "Part of train and val data:")
 
 # Delete missing values
-dataset = dataset.dropna()
+train_and_val_ds = train_and_val_ds.dropna()
 
 # Split the data into train and test
-train_dataset = dataset.sample(frac=1, random_state=0)
-test_dataset = dataset.drop(dataset.sample(frac=0.8, random_state=0).index)
+train_dataset = train_and_val_ds.sample(frac=1, random_state=0)
+test_dataset = train_and_val_ds.drop(train_and_val_ds.sample(frac=0.8, random_state=0).index)
 
 # Inspect the data
 train_stats = train_dataset.describe()
