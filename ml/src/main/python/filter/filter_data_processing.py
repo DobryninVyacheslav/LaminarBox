@@ -7,7 +7,7 @@ from tensorflow.keras import layers
 from ml.src.main.python.utils.tf_utils import pretty_print
 
 # Load data
-dataset_path = "ml/src/resources/filter_data.csv"
+dataset_path = "ml/src/resources/filter_data/train_and_val_filter_data.csv"
 raw_dataset = pd.read_csv(dataset_path, na_values="?", comment='\t',
                           sep=",", skipinitialspace=True)
 dataset = raw_dataset.copy()
