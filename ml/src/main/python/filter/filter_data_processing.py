@@ -43,8 +43,9 @@ normed_test_data = norm(test_features)
 # Build model
 def build_model():
     dnn_model = keras.Sequential([
-        layers.Dense(64, activation='relu', input_shape=[len(train_features.keys())]),
-        layers.Dense(64, activation='relu'),
+        layers.Dense(len(train_features.keys()), activation='relu', input_shape=[len(train_features.keys())]),
+        layers.Dense(16, activation='relu'),
+        layers.Dense(8, activation='relu'),
         layers.Dense(1)
     ])
 
@@ -58,7 +59,7 @@ model = build_model()
 model.summary()
 
 # Fit model
-EPOCHS = 1000
+EPOCHS = 5000
 early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 
 
