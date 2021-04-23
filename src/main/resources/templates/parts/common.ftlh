@@ -15,7 +15,7 @@
     <body>
 
     <!-- Import TensorFlow.js library -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js" type="text/javascript"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.5.0/dist/tf.min.js" type="text/javascript"></script>
     <!-- *** Import tfjs-vis - optional *** -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-vis/dist/tfjs-vis.umd.min.js"></script>
     <!-- Bootstrap -->
