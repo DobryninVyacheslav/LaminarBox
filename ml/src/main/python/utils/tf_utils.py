@@ -115,3 +115,8 @@ def read_csv(csv_path, do_copy=False):
         return dataset.copy()
     else:
         return dataset
+
+
+def get_unique_columns(df_1, df_2, keep="first"):
+    append_result = df_1.append(df_2, ignore_index=True)
+    return append_result.drop_duplicates(keep=keep, ignore_index=True)
