@@ -8,10 +8,8 @@ from ml.src.main.python.utils.tf_utils import pretty_print
 from ml.src.main.python.utils.tf_utils import read_csv
 
 # Load data
-train_and_val_ds_path = "ml/src/resources/filter_data/train_and_val_filter_data.csv"
-test_ds_path = "ml/src/resources/filter_data/test_filter_data.csv"
-train_and_val_ds = read_csv(train_and_val_ds_path, do_copy=True)
-test_ds = read_csv(test_ds_path, do_copy=True)
+train_and_val_ds = read_csv(csv_path="ml/src/resources/filter_data/train_and_val_filter_data.csv", do_copy=True)
+test_ds = read_csv(csv_path="ml/src/resources/filter_data/test_filter_data.csv", do_copy=True)
 pretty_print(train_and_val_ds.tail(), "Part of train and val data:")
 pretty_print(test_ds.tail(), "Part of test data:")
 
