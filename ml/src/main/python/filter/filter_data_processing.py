@@ -54,12 +54,11 @@ def build_model():
 
 
 model = build_model()
-print(model.summary())
-print('=====================')
+model.summary()
+
 example_batch = normed_train_data[:10]
 example_result = model.predict(example_batch)
-print(example_result)
-print('=====================')
+pretty_print(example_result, "Predict before fit")
 
 
 # Выведем прогресс обучения в виде точек после каждой завершенной эпохи
