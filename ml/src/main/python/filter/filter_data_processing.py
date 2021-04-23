@@ -8,10 +8,15 @@ from ml.src.main.python.utils.tf_utils import pretty_print
 
 # Load data
 train_and_val_ds_path = "ml/src/resources/filter_data/train_and_val_filter_data.csv"
+test_ds_path = "ml/src/resources/filter_data/test_filter_data.csv"
 train_and_val_raw_ds = pd.read_csv(train_and_val_ds_path, na_values="?", comment='\t',
                                    sep=",", skipinitialspace=True)
+test_raw_ds = pd.read_csv(test_ds_path, na_values="?", comment='\t',
+                          sep=",", skipinitialspace=True)
 train_and_val_ds = train_and_val_raw_ds.copy()
+test_ds = test_raw_ds.copy()
 pretty_print(train_and_val_ds.tail(), "Part of train and val data:")
+pretty_print(test_ds.tail(), "Part of test data:")
 
 # Delete missing values
 train_and_val_ds = train_and_val_ds.dropna()
