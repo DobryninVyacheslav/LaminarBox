@@ -76,11 +76,6 @@ history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,
 loss, mae, mse = model.evaluate(normed_test_data, test_labels, verbose=2)
 print("Testing set Mean Abs Error: {:5.2f} MPG".format(mae))
 
-# test_predictions = model.predict(normed_test_data).flatten()
-# print(normed_test_data)
-# print('===================')
-# print(test_predictions)
-
 # plt.scatter(test_labels, test_predictions)
 # plt.xlabel('True Values [MPG]')
 # plt.ylabel('Predictions [MPG]')
