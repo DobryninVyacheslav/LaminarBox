@@ -124,8 +124,8 @@ def get_unique_columns(df_1, df_2, keep="first"):
 
 def plots_for_compare(plt1_value, plt2_value, plt1_name="plt1", plt2_name="plt2",
                       x_label_name="x", y_label_name="y"):
-    plt.plot(plt1_value, plt1_name)
-    plt.plot(plt2_value, plt2_name)
+    plt.plot(plt1_value, label=plt1_name)
+    plt.plot(plt2_value, label=plt2_name)
     plt.ylim([0, 10])
     plt.xlabel(x_label_name)
     plt.ylabel(y_label_name)
