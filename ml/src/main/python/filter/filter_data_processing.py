@@ -77,6 +77,7 @@ history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,
 loss, mae, mse = model.evaluate(normed_test_data, test_labels, verbose=2)
 print("Testing set Mean Abs Error: {:5.2f} minutes".format(mae))
 
+# Make predictions
 pretty_print(test_features, "Test features")
 pretty_print(normed_test_data, "Normalized test features")
 test_predictions = model.predict(normed_test_data).flatten()
