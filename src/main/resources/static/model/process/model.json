@@ -57,7 +57,7 @@
               },
               "bias_initializer": {
                 "class_name": "Zeros",
-                "config": { }
+                "config": {}
               },
               "kernel_regularizer": null,
               "bias_regularizer": null,
@@ -116,7 +116,7 @@
               },
               "bias_initializer": {
                 "class_name": "Zeros",
-                "config": { }
+                "config": {}
               },
               "kernel_regularizer": null,
               "bias_regularizer": null,
@@ -175,7 +175,7 @@
               },
               "bias_initializer": {
                 "class_name": "Zeros",
-                "config": { }
+                "config": {}
               },
               "kernel_regularizer": null,
               "bias_regularizer": null,
@@ -239,7 +239,7 @@
               },
               "bias_initializer": {
                 "class_name": "Zeros",
-                "config": { }
+                "config": {}
               },
               "kernel_regularizer": null,
               "bias_regularizer": null,
@@ -265,7 +265,7 @@
               },
               "bias_initializer": {
                 "class_name": "Zeros",
-                "config": { }
+                "config": {}
               },
               "kernel_regularizer": null,
               "bias_regularizer": null,
@@ -305,10 +305,10 @@
         "config": {
           "name": "Adam",
           "learning_rate": 0.0010000000474974513,
-          "decay": 0,
+          "decay": 0.0,
           "beta_1": 0.8999999761581421,
           "beta_2": 0.9990000128746033,
-          "epsilon": 1e-7,
+          "epsilon": 1e-07,
           "amsgrad": false
         }
       }
