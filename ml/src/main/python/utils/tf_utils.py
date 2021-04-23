@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import tensorflow as tf
+import pandas as pd
 from tensorflow.keras import layers
 
 
@@ -106,3 +107,7 @@ def pretty_print(value, description="", line_length=32, line_symbol="="):
         if len(description) < line_length:
             description = description + line_symbol
     print(description + "\n", value, "\n" + line_length * line_symbol)
+
+
+def read_csv(csv_path):
+    return pd.read_csv(csv_path, na_values="?", comment='\t', sep=",", skipinitialspace=True)
