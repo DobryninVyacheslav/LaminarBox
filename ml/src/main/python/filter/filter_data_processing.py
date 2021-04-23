@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-import pandas as pd
+import numpy as np
 import tensorflow as tf
 import tensorflowjs as tfjs
 from tensorflow import keras
@@ -84,7 +84,14 @@ test_predictions = model.predict(normed_test_data).flatten()
 pretty_print(test_predictions, "Predict result (test features)", line_length=50)
 
 # Plot loss
-tf_utils.plot_loss(history, label_name="time")
+tf_utils.plots_for_compare(history.history['loss'], history.history['val_loss'],
+                           plt1_name='loss', plt2_name='val_loss',
+                           x_label_name='Epoch', y_label_name='Error[time]')
+
+# Compare test labels and predictions
+tf_utils.plots_for_compare(np.sort(test_labels.to_numpy()), np.sort(test_predictions),
+                           plt1_name='Исходные значения', plt2_name='Предсказания',
+                           x_label_name='Номер значения', y_label_name='Время, минуты')
 
 # Save model in JSON format
 tfjs.converters.save_keras_model(model, "src/main/resources/static/model/filter")
