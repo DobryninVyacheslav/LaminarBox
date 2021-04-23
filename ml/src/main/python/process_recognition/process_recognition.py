@@ -12,8 +12,8 @@ from tensorflow.python.keras.layers.preprocessing.image_preprocessing import HOR
 from ml.src.main.python.utils import tf_utils
 
 # Download and explore the dataset
-train_and_val_data_dir = pathlib.Path("ml/src/resources/process_recognition_data/process_photo/train_and_val")
-test_data_dir = pathlib.Path("ml/src/resources/process_recognition_data/process_photo/test")
+train_and_val_data_dir = pathlib.Path("ml/src/resources/process_recognition_data/train_and_val")
+test_data_dir = pathlib.Path("ml/src/resources/process_recognition_data/test")
 print("Total train and val photo number: ", len(list(train_and_val_data_dir.glob('*/*.jpg'))))
 print("Total test photo number: ", len(list(test_data_dir.glob('*/*.jpg'))))
 
