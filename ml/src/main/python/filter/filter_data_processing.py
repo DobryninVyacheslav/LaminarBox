@@ -4,12 +4,14 @@ import tensorflow as tf
 import tensorflowjs as tfjs
 from tensorflow import keras
 from tensorflow.keras import layers
+import ml.src.main.python.utils.tf_utils as tf_utils
 from ml.src.main.python.utils.tf_utils import pretty_print
 from ml.src.main.python.utils.tf_utils import read_csv
 
 # Load data
 train_and_val_ds = read_csv(csv_path="ml/src/resources/filter_data/train_and_val_filter_data.csv", do_copy=True)
 test_ds = read_csv(csv_path="ml/src/resources/filter_data/test_filter_data.csv", do_copy=True)
+test_ds = tf_utils.get_unique_columns(test_ds, train_and_val_ds, keep=False)
 pretty_print(train_and_val_ds.tail(), "Part of train and val data:")
 pretty_print(test_ds.tail(), "Part of test data:")
 
