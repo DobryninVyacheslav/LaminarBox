@@ -58,5 +58,3 @@ history = dnn_model.fit(
 test_predictions = dnn_model.predict(test_features).flatten()
 pretty_print(test_features, "test_features")
 pretty_print(test_predictions, "test_predictions")
-
-tfjs.converters.save_keras_model(dnn_model,'src/main/resources/static/model/filter')
