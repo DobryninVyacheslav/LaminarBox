@@ -4,7 +4,7 @@ function normPressure(value) {
 
 async function run() {
 
-    const model = await tf.loadLayersModel('https://cdn.glitch.com/52a372b6-0a36-4419-aade-90db47e9aed5%2Ffilter_model.json?v=1619103224754');
+    const model = await tf.loadLayersModel('/model/filter/model.json');
 
     let glass;
     if (document.getElementById("glass").checked) {
