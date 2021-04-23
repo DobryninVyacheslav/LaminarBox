@@ -124,4 +124,4 @@ loss, acc = model.evaluate(test_ds)
 print("Accuracy: ", acc)
 
 # Save model to json format
-tfjs.converters.save_keras_model(model, "./model")
+tfjs.converters.save_keras_model(model, "src/main/resources/static/model/process")
