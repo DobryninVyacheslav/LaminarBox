@@ -4,13 +4,14 @@ import tensorflow as tf
 import tensorflowjs as tfjs
 from tensorflow import keras
 from tensorflow.keras import layers
+from ml.src.main.python.utils.tf_utils import pretty_print
 
 # Load data
 dataset_path = "ml/src/resources/filter_data.csv"
 raw_dataset = pd.read_csv(dataset_path, na_values="?", comment='\t',
                           sep=",", skipinitialspace=True)
 dataset = raw_dataset.copy()
-print("=====================\nPart of data: ", dataset.tail(), "\n=====================")
+pretty_print(dataset.tail(), "Part of init data:")
 
 # Delete missing values
 dataset = dataset.dropna()
@@ -18,10 +19,14 @@ dataset = dataset.dropna()
 # Split the data into train and test
 train_dataset = dataset.sample(frac=1, random_state=0)
 test_dataset = dataset.drop(dataset.sample(frac=0.8, random_state=0).index)
+
+# Inspect the data
 train_stats = train_dataset.describe()
 train_stats.pop('time')
 train_stats = train_stats.transpose()
+pretty_print(train_stats, "Train_stats")
 
+# Split features from labels
 train_labels = train_dataset.pop('time')
 test_labels = test_dataset.pop('time')
 
