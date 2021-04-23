@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import seaborn as sns
+from ml.src.main.python.utils.tf_utils import pretty_print
 
 import tensorflow as tf
 import tensorflowjs as tfjs
@@ -20,13 +20,10 @@ dataset = raw_dataset.copy()
 dataset.isna().sum()
 dataset = dataset.dropna()
 
-print('==============================================')
 train_dataset = dataset.sample(frac=1, random_state=0)
-print(train_dataset)
-print('==============================================')
+pretty_print(train_dataset, "Train dataset")
 test_dataset = dataset.drop(dataset.sample(frac=0.8, random_state=0).index)
-print(test_dataset)
-print('==============================================')
+pretty_print(test_dataset, "Test dataset")
 
 train_features = train_dataset.copy()
 test_features = test_dataset.copy()
@@ -59,8 +56,7 @@ history = dnn_model.fit(
     verbose=0, epochs=1000)
 
 test_predictions = dnn_model.predict(test_features).flatten()
-print('==============================================')
-print(test_features)
-print(test_predictions)
+pretty_print(test_features, "test_features")
+pretty_print(test_predictions, "test_predictions")
 
-tfjs.converters.save_keras_model(dnn_model,'/home/slava/Common/PycharmProjects/LaminarBox/target')
+tfjs.converters.save_keras_model(dnn_model,'src/main/resources/static/model/filter')
