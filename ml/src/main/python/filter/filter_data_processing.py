@@ -15,9 +15,9 @@ test_ds = tf_utils.get_unique_columns(test_ds, train_and_val_ds, keep=False)
 pretty_print(train_and_val_ds.tail(), "Part of train and val data:")
 pretty_print(test_ds.tail(), "Part of test data:")
 
-# Delete missing values
-train_and_val_ds = train_and_val_ds.dropna()
-test_ds = test_ds.dropna()
+# Shuffle values and delete
+train_and_val_ds = train_and_val_ds.sample(frac=1, random_state=0).dropna()
+test_ds = test_ds.sample(frac=1, random_state=0).dropna()
 
 # Inspect the data
 train_stats = train_and_val_ds.describe()
