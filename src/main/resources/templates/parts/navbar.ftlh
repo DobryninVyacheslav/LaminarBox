@@ -7,7 +7,7 @@
                     <a class="nav-link active" aria-current="page" href="filter">Фильтр</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="process.html">Тех. процесс</a>
+                    <a class="nav-link active" aria-current="page" href="process">Тех. процесс</a>
                 </li>
             </ul>
         </div>

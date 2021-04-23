@@ -14,12 +14,6 @@
     </head>
     <body>
 
-    <#include "navbar.ftlh">
-
-    <div class="container mt-5">
-        <#nested>
-    </div>
-
     <!-- Import TensorFlow.js library -->
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js" type="text/javascript"></script>
     <!-- *** Import tfjs-vis - optional *** -->
@@ -28,6 +22,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
             crossorigin="anonymous"></script>
+
+    <#include "navbar.ftlh">
+
+    <div class="container mt-5">
+        <#nested>
+    </div>
+
     </body>
     </html>
 </#macro>
