@@ -120,3 +120,15 @@ def read_csv(csv_path, do_copy=False):
 def get_unique_columns(df_1, df_2, keep="first"):
     append_result = df_1.append(df_2, ignore_index=True)
     return append_result.drop_duplicates(keep=keep, ignore_index=True)
+
+
+def plot_loss(history, label_name="Label"):
+    plt.plot(history.history['loss'], label='loss')
+    plt.plot(history.history['val_loss'], label='val_loss')
+    plt.ylim([0, 10])
+    plt.xlabel('Epoch')
+    plt.ylabel('Error [' + str(label_name) + ']')
+    plt.legend()
+    plt.grid(True)
+    plt.autoscale()
+    plt.show()
