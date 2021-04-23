@@ -9,7 +9,7 @@ from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 from tensorflow.python.keras.layers.preprocessing.image_preprocessing import HORIZONTAL_AND_VERTICAL
 
-from utils import tf_utils
+from ml.src.main.python.utils import tf_utils
 
 # Download and explore the dataset
 train_and_val_data_dir = pathlib.Path(
