@@ -27,8 +27,10 @@ train_stats = train_stats.transpose()
 pretty_print(train_stats, "Train_stats")
 
 # Split features from labels
-train_labels = train_dataset.pop('time')
-test_labels = test_dataset.pop('time')
+train_features = train_dataset.copy()
+test_features = test_dataset.copy()
+train_labels = train_features.pop('time')
+test_labels = test_features.pop('time')
 
 
 # Normalize data
@@ -57,7 +59,7 @@ def build_model():
 model = build_model()
 model.summary()
 
-# Выведем прогресс обучения в виде точек после каждой завершенной эпохи
+# Fit model
 EPOCHS = 1000
 early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 
