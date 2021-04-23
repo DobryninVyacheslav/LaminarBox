@@ -102,5 +102,7 @@ def pretty_print(value, description="", line_length=32, line_symbol="="):
     if desc_symbols_len <= line_length:
         indent_len = int((line_length - desc_symbols_len) / 2)
         indent = indent_len * line_symbol
-        description = indent + description + indent + "\n"
-    print(description, value, "\n" + line_length * line_symbol)
+        description = indent + description + indent
+        if len(description) < line_length:
+            description = description + line_symbol
+    print(description + "\n", value, "\n" + line_length * line_symbol)
