@@ -109,5 +109,9 @@ def pretty_print(value, description="", line_length=32, line_symbol="="):
     print(description + "\n", value, "\n" + line_length * line_symbol)
 
 
-def read_csv(csv_path):
-    return pd.read_csv(csv_path, na_values="?", comment='\t', sep=",", skipinitialspace=True)
+def read_csv(csv_path, do_copy=False):
+    dataset = pd.read_csv(csv_path, na_values="?", comment='\t', sep=",", skipinitialspace=True)
+    if do_copy:
+        return dataset.copy()
+    else:
+        return dataset
