@@ -122,12 +122,13 @@ def get_unique_columns(df_1, df_2, keep="first"):
     return append_result.drop_duplicates(keep=keep, ignore_index=True)
 
 
-def plot_loss(history, label_name="Label"):
-    plt.plot(history.history['loss'], label='loss')
-    plt.plot(history.history['val_loss'], label='val_loss')
+def plots_for_compare(plt1_value, plt2_value, plt1_name="plt1", plt2_name="plt2",
+                      x_label_name="x", y_label_name="y"):
+    plt.plot(plt1_value, plt1_name)
+    plt.plot(plt2_value, plt2_name)
     plt.ylim([0, 10])
-    plt.xlabel('Epoch')
-    plt.ylabel('Error [' + str(label_name) + ']')
+    plt.xlabel(x_label_name)
+    plt.ylabel(y_label_name)
     plt.legend()
     plt.grid(True)
     plt.autoscale()
