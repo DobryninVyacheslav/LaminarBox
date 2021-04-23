@@ -95,3 +95,12 @@ def get_first_tuple_from_ds(ds):
 def concat_tensors(t1, t2, axis=0):
     result = tf.concat([t1, t2], axis=axis)
     return result
+
+
+def pretty_print(value, description="", line_length=32, line_symbol="="):
+    desc_symbols_len = len(description)
+    if desc_symbols_len <= line_length:
+        indent_len = int((line_length - desc_symbols_len) / 2)
+        indent = indent_len * line_symbol
+        description = indent + description + indent + "\n"
+    print(description, value, "\n" + line_length * line_symbol)
