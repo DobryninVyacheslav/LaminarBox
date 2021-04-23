@@ -83,4 +83,5 @@ pretty_print(normed_test_data, "Normalized test features")
 test_predictions = model.predict(normed_test_data).flatten()
 pretty_print(test_predictions, "Predict result (test features)", line_length=50)
 
+# Save model in JSON format
 tfjs.converters.save_keras_model(model, "src/main/resources/static/model/filter")
