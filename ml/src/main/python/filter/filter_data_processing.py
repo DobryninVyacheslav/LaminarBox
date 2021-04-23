@@ -48,8 +48,8 @@ def build_model():
     ])
 
     dnn_model.compile(loss='mse',
-                        optimizer=tf.keras.optimizers.RMSprop(0.001),
-                        metrics=['mae', 'mse'])
+                      optimizer=tf.keras.optimizers.RMSprop(0.001),
+                      metrics=['mae', 'mse'])
     return dnn_model
 
 
@@ -69,32 +69,6 @@ class PrintDot(keras.callbacks.Callback):
         print('.', end='')
 
 
-def plot_history(history):
-    hist = pd.DataFrame(history.history)
-    hist['epoch'] = history.epoch
-
-    plt.figure()
-    plt.xlabel('Epoch')
-    plt.ylabel('Mean Abs Error [MPG]')
-    plt.plot(hist['epoch'], hist['mae'],
-             label='Train Error')
-    plt.plot(hist['epoch'], hist['val_mae'],
-             label='Val Error')
-    plt.ylim([0, 5])
-    plt.legend()
-
-    plt.figure()
-    plt.xlabel('Epoch')
-    plt.ylabel('Mean Square Error [$MPG^2$]')
-    plt.plot(hist['epoch'], hist['mse'],
-             label='Train Error')
-    plt.plot(hist['epoch'], hist['val_mse'],
-             label='Val Error')
-    plt.ylim([0, 20])
-    plt.legend()
-    plt.show()
-
-
 EPOCHS = 1000
 
 early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
@@ -102,7 +76,6 @@ early_stop = keras.callbacks.EarlyStopping(monitor='val_loss', patience=10)
 history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,
                     validation_split=0.2, verbose=0, callbacks=[early_stop, PrintDot()])
 
-plot_history(history)
 #
 # loss, mae, mse = model.evaluate(normed_train_data, train_labels, verbose=2)
 #
