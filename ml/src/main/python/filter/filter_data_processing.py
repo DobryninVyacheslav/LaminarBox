@@ -17,20 +17,17 @@ pretty_print(test_ds.tail(), "Part of test data:")
 
 # Delete missing values
 train_and_val_ds = train_and_val_ds.dropna()
-
-# Split the data into train and test
-train_dataset = train_and_val_ds.sample(frac=1, random_state=0)
-test_dataset = train_and_val_ds.drop(train_and_val_ds.sample(frac=0.8, random_state=0).index)
+test_ds = test_ds.dropna()
 
 # Inspect the data
-train_stats = train_dataset.describe()
+train_stats = train_and_val_ds.describe()
 train_stats.pop('time')
 train_stats = train_stats.transpose()
 pretty_print(train_stats, "Train_stats")
 
 # Split features from labels
-train_features = train_dataset.copy()
-test_features = test_dataset.copy()
+train_features = train_and_val_ds.copy()
+test_features = test_ds.copy()
 train_labels = train_features.pop('time')
 test_labels = test_features.pop('time')
 
