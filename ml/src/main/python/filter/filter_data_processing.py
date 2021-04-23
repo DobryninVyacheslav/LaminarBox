@@ -38,14 +38,14 @@ def norm(x):
     return (x - train_stats['mean']) / train_stats['std']
 
 
-normed_train_data = norm(train_dataset)
-normed_test_data = norm(test_dataset)
+normed_train_data = norm(train_features)
+normed_test_data = norm(test_features)
 
 
 # Build model
 def build_model():
     dnn_model = keras.Sequential([
-        layers.Dense(64, activation='relu', input_shape=[len(train_dataset.keys())]),
+        layers.Dense(64, activation='relu', input_shape=[len(train_features.keys())]),
         layers.Dense(64, activation='relu'),
         layers.Dense(1)
     ])
