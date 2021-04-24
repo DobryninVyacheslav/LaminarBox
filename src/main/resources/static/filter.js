@@ -1,15 +1,15 @@
+const minPressure = 200;
+const maxPressure = 600;
+const onValue = 1.0;
+const offValue = 0.0;
+
 function normPressure(value) {
-    const minPressure = 200;
-    const maxPressure = 600;
     return (value - minPressure) / (maxPressure - minPressure);
 }
 
 async function run() {
 
     const model = await tf.loadLayersModel('/model/filter/model.json');
-
-    const onValue = 1.0;
-    const offValue = 0.0;
     const glass = document.getElementById("glass").checked ? onValue : offValue;
     const air = document.getElementById("air").checked ? onValue : offValue;
     const pressure = normPressure(document.getElementById('pressure').value);
