@@ -33,7 +33,7 @@ test_labels = test_features.pop('time')
 
 # Normalize data
 def norm(x):
-    return (x - train_stats['mean']) / train_stats['std']
+    return (x - train_stats['min']) / (train_stats['max'] - train_stats['min'])
 
 
 normed_train_data = norm(train_features)
