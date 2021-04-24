@@ -16,8 +16,7 @@ async function run() {
 
     const result = model.predict(tf.tensor([[glass, air, pressure]])).dataSync();
 
-    document.getElementById('result').innerText =
-        Number(result).toFixed(2) + " мин.";
+    document.getElementById('result').innerText = Number(result).toFixed(2) + " мин.";
 
 }
 
