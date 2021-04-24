@@ -1,5 +1,7 @@
 function normPressure(value) {
-    return (value - 200) / (600 - 200);
+    const minPressure = 200;
+    const maxPressure = 600;
+    return (value - minPressure) / (maxPressure - minPressure);
 }
 
 async function run() {
