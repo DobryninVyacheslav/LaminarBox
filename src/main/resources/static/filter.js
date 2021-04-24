@@ -1,5 +1,5 @@
 function normPressure(value) {
-    return (value - 400) / 145.09525;
+    return (value - 400) / 130.930734;
 }
 
 async function run() {
@@ -7,7 +7,7 @@ async function run() {
     const model = await tf.loadLayersModel('/model/filter/model.json');
 
     let glass;
-    let normalizedUnitValue = 0.974679;
+    let normalizedUnitValue = 0.986013;
     if (document.getElementById("glass").checked) {
         glass = normalizedUnitValue;
     } else {
