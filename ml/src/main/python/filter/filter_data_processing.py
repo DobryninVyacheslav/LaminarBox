@@ -73,6 +73,11 @@ class PrintDot(keras.callbacks.Callback):
 history = model.fit(normed_train_data, train_labels, epochs=EPOCHS,
                     validation_split=0.2, verbose=0, callbacks=[early_stop, PrintDot()])
 
+# Plot loss
+tf_utils.plots_for_compare(history.history['loss'], history.history['val_loss'],
+                           plt1_name='loss', plt2_name='val_loss',
+                           x_label_name='Epoch', y_label_name='Error[time]')
+
 # Print MAE
 loss, mae, mse = model.evaluate(normed_test_data, test_labels, verbose=2)
 print("Testing set Mean Abs Error: {:5.2f} minutes".format(mae))
@@ -82,11 +87,6 @@ pretty_print(test_features, "Test features")
 pretty_print(normed_test_data, "Normalized test features")
 test_predictions = model.predict(normed_test_data).flatten()
 pretty_print(test_predictions, "Predict result (test features)", line_length=50)
-
-# Plot loss
-tf_utils.plots_for_compare(history.history['loss'], history.history['val_loss'],
-                           plt1_name='loss', plt2_name='val_loss',
-                           x_label_name='Epoch', y_label_name='Error[time]')
 
 # Compare test labels and predictions
 tf_utils.plots_for_compare(np.sort(test_labels.to_numpy()), np.sort(test_predictions),
