@@ -7,16 +7,17 @@ async function run() {
     const model = await tf.loadLayersModel('/model/filter/model.json');
 
     let glass;
+    let normalizedUnitValue = 0.974679;
     if (document.getElementById("glass").checked) {
-        glass = 0.974679;
+        glass = normalizedUnitValue;
     } else {
-        glass = -0.974679;
+        glass = -normalizedUnitValue;
     }
     let air;
     if (document.getElementById("air").checked) {
-        air = 0.974679;
+        air = normalizedUnitValue;
     } else {
-        air = -0.974679;
+        air = -normalizedUnitValue;
     }
 
     const pressure = document.getElementById('pressure').value;
