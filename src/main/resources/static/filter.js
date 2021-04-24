@@ -8,8 +8,10 @@ async function run() {
 
     const model = await tf.loadLayersModel('/model/filter/model.json');
 
-    const glass = document.getElementById("glass").checked ? 1.0 : 0.0;
-    const air = document.getElementById("air").checked ? 1.0 : 0.0;
+    const onValue = 1.0;
+    const offValue = 0.0;
+    const glass = document.getElementById("glass").checked ? onValue : offValue;
+    const air = document.getElementById("air").checked ? onValue : offValue;
     const pressure = normPressure(document.getElementById('pressure').value);
 
     const result = model.predict(tf.tensor([[glass, air, pressure]])).dataSync();
