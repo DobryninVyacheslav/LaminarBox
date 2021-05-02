@@ -62,8 +62,8 @@ augmentation_and_rescale = keras.Sequential(
                                                      input_shape=(img_height,
                                                                   img_width,
                                                                   3)),
-        layers.experimental.preprocessing.RandomRotation(0.05),
-        layers.experimental.preprocessing.RandomZoom(0.05),
+        layers.experimental.preprocessing.RandomRotation(0.01),
+        layers.experimental.preprocessing.RandomZoom(0.01),
         layers.experimental.preprocessing.RandomContrast(0.1),
         layers.experimental.preprocessing.Rescaling(1. / 255),
     ]
@@ -95,7 +95,7 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 # Train the model
-epochs = 20
+epochs = 35
 history = model.fit(
     aug_train_ds.concatenate(tf_utils.normalize_ds(train_ds)),
     validation_data=val_ds,
