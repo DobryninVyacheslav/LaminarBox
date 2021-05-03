@@ -17,7 +17,8 @@ async function run() {
     const result = pressure < maxPressure ?
         model.predict(tf.tensor([[glass, air, normPressure(pressure)]])).dataSync() : 0.0;
 
-    document.getElementById('result').innerText = Number(result).toFixed(2) + " мин.";
+    document.getElementById('result').innerText = "Время до загрязнения фильтров: " +
+        Number(result).toFixed(2) + " мин.";
 
 }
 
