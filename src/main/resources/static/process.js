@@ -105,7 +105,7 @@ async function run() {
 
         await tf.nextFrame();
         await sleep(SLEEP_TIME);
-        tf.engine().endScope()
+        tf.engine().endScope();
     }
 }
 
