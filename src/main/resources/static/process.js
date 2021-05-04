@@ -82,9 +82,13 @@ async function run() {
     console.log(model.summary());
 
     const classes = ['defective impeller', 'fan', 'fixed part', 'impeller'];
-    const webcam = await tf.data.webcam(webcamElement);
+    const webcam = await tf.data.webcam(webcamElement, {
+        resizeWidth: IMAGE_SIZE,
+        resizeHeight: IMAGE_SIZE,
+    });
 
     while (true) {
+        tf.engine().startScope();
         const img = await webcam.capture();
 
         const result = model.predict(tf.image.resizeBilinear(img, [IMAGE_SIZE, IMAGE_SIZE]).div(255).reshape([1, IMAGE_SIZE,IMAGE_SIZE,3]));
@@ -101,6 +105,7 @@ async function run() {
 
         await tf.nextFrame();
         await sleep(SLEEP_TIME);
+        tf.engine().endScope()
     }
 }
 
