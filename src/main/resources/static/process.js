@@ -65,7 +65,7 @@ button.addEventListener('click', event => {
 
 statusElement.innerText = 'Модель загружается. Версия TensorFlow.js: ' + tf.version.tfjs;
 
-const MODEL_URL = 'https://cdn.glitch.com/52a372b6-0a36-4419-aade-90db47e9aed5%2Fmodel.json?v=1619095099679';
+const MODEL_URL = '/model/process/model.json';
 const SLEEP_TIME = 500;
 const IMAGE_SIZE = 180;
 
